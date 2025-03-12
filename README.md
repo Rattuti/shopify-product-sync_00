@@ -1,23 +1,39 @@
-## :relieved: はじめに
-ECサイト構築の現場でよくある困りごとをテーマに、学習したプログラミング技能を活かした課題解決ができないか検討してみました！！
+## :relieved: はじめに  
+ECサイト構築の現場でよくある困りごとをテーマに、学習したプログラミング技能を活かした課題解決ができないか検討してみました！！  
 
-## 😅困りごとテーマ一覧
+## 😅困りごとテーマ一覧  
 No.1：商品情報の一括更新が面倒  
 No.2：配送日時の指定を追加したい  
 No.3：在庫切れ商品の非表示  
 No.4：レポート機能が物足りない  
 
-## 💪動作確認と結果
-No.１：商品情報の一括更新が面倒  
+## 💪動作確認と結果  
+◆　No.１：商品情報の一括更新が面倒  
 ▼　困りごと  
   - 商品数が多い場合、Shopify管理画面から一つずつ更新するのは手間。  
   - CSVインポート/エクスポートは便利だが、カスタマイズ性が低い。  
+
 ▼　試したこと  
 Shopify Admin APIを用い商品データを取得  
 
-## 結果
-No.1：商品情報の一括取得
+▼ 結果  
+No.1：商品情報の一括取得  
 
 ![image](https://github.com/user-attachments/assets/60eac71e-6ae6-4fac-ac3d-c6dafc420550)
+
+◆　No.2：配送日時の指定を追加したい  
+▼　困りごと  
+
+▼　試したこと  
+Liquidの内の下記のパスで配送日を選択するコードを追加    
+path：　sections / </>cart-notification-product.liquid  
+
+<div class="product-option">
+ <label for="delivery_date_{{ item.key }}">配送日時の指定:</label>
+ <input type="datetime-local" name="properties[配送日時]" id="delivery_date_{{ item.key }}" required>
+</div>
+
+
+
 
 ## おわりに
