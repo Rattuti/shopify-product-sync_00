@@ -22,17 +22,19 @@ No.1：商品情報の一括取得
 ![image](https://github.com/user-attachments/assets/60eac71e-6ae6-4fac-ac3d-c6dafc420550)
 
 ◆　No.2：配送日時の指定を追加したい  
-▼　困りごと  
+▼　困りごと 
+Shopifyの標準機能では、顧客が購入時に配送日時を指定できない。  
 
 ▼　試したこと  
 Liquidの内の下記のパスで配送日を選択するコードを追加    
 path：　sections / </>cart-notification-product.liquid  
 
-<div class="product-option">
- <label for="delivery_date_{{ item.key }}">配送日時の指定:</label>
- <input type="datetime-local" name="properties[配送日時]" id="delivery_date_{{ item.key }}" required>
-</div>
+![image](https://github.com/user-attachments/assets/8517556c-1840-4319-bee4-ec40a886dca6)
 
+
+▼　結果
+配送日を選択する項目を追加
+![image](https://github.com/user-attachments/assets/d5797e7e-8a59-4900-94e6-3db0727ccac0)
 
 
 
