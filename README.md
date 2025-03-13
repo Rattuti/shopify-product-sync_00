@@ -35,14 +35,81 @@ Shopifyの標準機能では、顧客が購入時に配送日時を指定でき�
 
 ▼　結果  
 Liquidの編集ファイルにパスは下記の通り  
-path：　sections / </>cart-notification-product.liquid  
+```
+Path：　sections / </>cart-notification-product.liquid
+```
+```liquid
+ <!-- ここに配送日時の選択フィールドを追加 -->
+<form method="post" action="/cart">
+  配送希望日：<input type="date" name="attributes[配送希望日]" required>
+  <input type="submit" value="更新">
+</form>
+```
 ![image](https://github.com/user-attachments/assets/8517556c-1840-4319-bee4-ec40a886dca6)
 
 🛒カート画面に配送日が選択できるようになった。  
 📌ユーザが自由に配送日を選べるため、UXが向上  
 ![image](https://github.com/user-attachments/assets/02f698b3-39ed-4802-bba1-924244fa420d)
 
+### 📦️在庫切れ商品を自動で隠したい
+▼　困りごと  
+在庫がない商品がストアに表示され続け、ユーザが勘違いしてしまいクレームに繋がりがち。　　  
+
+▼　試したこと    
+☑商品が在庫切れの場合に非公開にするようにスクリプトを作成。  
+
+```
+Path：　section / </>featured-collection
+```
+```liquid
+{%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
+          {%- if product.available -%}  <!-- 在庫がある場合 -->
+            <li
+              id="Slide-{{ section.id }}-{{ forloop.index }}"
+              class="grid__item
+              {% if show_mobile_slider or show_desktop_slider %}
+                slider__slide
+              {% endif %}
+                {% if settings.animations_reveal_on_scroll %}
+                  scroll-trigger animate--slide-in
+                {% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              {% render 'card-product',
+                card_product: product,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                skip_styles: skip_card_product_styles,
+                section_id: section.id,
+                quick_add: section.settings.quick_add
+              %}
+            </li>
+            {%- assign skip_card_product_styles = true -%}
+          {%- else -%}  <!-- 在庫がない場合 -->
+            <li
+              id="Slide-{{ section.id }}-{{ forloop.index }}"
+              class="grid__item"
+            >
+              <p>在庫切れ</p>  <!-- 在庫切れと表示 -->
+            </li>
+          {%- endif -%}
+```
 
 
 
-## おわりに
+
+---
+🎉 まとめ  
+このリポジトリでは、Shopifyストアでよく直面する課題をプログラミングによって解決しました。  
+これらのカスタマイズを導入することで、ECサイトの運営が効率化され、ユーザーの体験も向上します。  
+今後も新しい機能や改善案を追加していく予定です。
+
+---
+📬 お問い合わせ  
+質問や改善点があれば、GitHub Issuesで報告してください。  
