@@ -112,4 +112,4 @@ Path：　section / </>featured-collection
 
 ---
 📬 お問い合わせ  
-質問や改善点があれば、GitHub Issuesで報告してください。  
+質問や改善点があれば、GitHub Issuesでご連絡いただけますと幸いです！。  
